@@ -3,6 +3,7 @@
 **/.git
 **/.utmp
 **/vscode
+.vs
 **/dist
 **/node_modules
 **/*.env
