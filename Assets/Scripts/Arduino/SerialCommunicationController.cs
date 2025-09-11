@@ -143,14 +143,17 @@ public class SerialCommunicationController : MonoBehaviour
         }
     }
 
-    public void SendData(string message)
+    public bool SendData(string message)
     {
+        // If possible, send data to the arduino
         if (serialPort != null && serialPort.IsOpen) {
             try {
                 serialPort.WriteLine(message);
+                return true;
             } catch (System.Exception ex) {
                 Debug.LogError("Error writing to serial port: " + ex.Message);
+                return false;
             }
-        }
+        } return false;
     }
 }
