@@ -49,7 +49,7 @@ void loop() {
   read165(buffer);
 
   // Envoyer une ligne formatée pour Unity
-  Serial.print("DATA ");
+  Serial.print("DATA_INTR_");
   for (int chip = 0; chip < numChips; chip++) {
     for (int bit = 7; bit >= 0; bit--) {
       Serial.print((buffer[chip] >> bit) & 1);
