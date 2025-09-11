@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
+[DisallowMultipleComponent]
 public class SerialCommunicationController : MonoBehaviour
 {
     private SerialPort serialPort;
@@ -27,6 +28,8 @@ public class SerialCommunicationController : MonoBehaviour
     [SerializeField]
     private string pong = "pong";
     [SerializeField]
+    private string dataKey = "DATA_";
+    [SerializeField]
     private UnityEvent<string> onData;
     public UnityEvent<string> OnData => onData;
 
@@ -44,7 +47,9 @@ public class SerialCommunicationController : MonoBehaviour
 
         lock (dataLock) {
             if (!string.IsNullOrEmpty(data)) {
-                onData.Invoke(data);
+                if (data.StartsWith(dataKey))
+                    onData.Invoke(data.Substring(dataKey.Length));
+                else Debug.Log("[ARDUINO] : " + data);
                 data = string.Empty; // Réinitialiser la donnée après traitement
             }
         }
@@ -72,6 +77,7 @@ public class SerialCommunicationController : MonoBehaviour
 
     private async Task OpenSerialPort()
     {
+        Debug.LogWarning("Looking for Arduino...");
         string portName = await SerialHelper.DetectArduinoPort(destroyCancellationToken, baudRate, ping, pong);
         if (string.IsNullOrEmpty(portName) || destroyCancellationToken.IsCancellationRequested) return;
 
