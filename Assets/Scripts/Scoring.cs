@@ -42,11 +42,8 @@ public class Scoring : MonoBehaviour
     void Update()
     {
         timer = Time.time;
-
         int time = (int)timer;
-
         m_scoreTxt.text = $"{time}";
-
     }
 
     #endregion
