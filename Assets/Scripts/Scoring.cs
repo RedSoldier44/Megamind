@@ -2,6 +2,13 @@ using UnityEngine;
 
 public class Scoring : MonoBehaviour
 {
+
+    #region Fields
+    [SerializeField] private float score;
+
+
+    #endregion
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
