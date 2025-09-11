@@ -1,6 +1,16 @@
 #include <SPI.h>
 
-const int pinSH_LD = 8;       // SH/LD (Latch) relié à D8
+// BUTONS Pins
+const int pinButtonMedium = 2; // Signal Medium Button (yellow with led) pin
+const int pinButtonMediumLed = 3;  // (SUPPORT Analogic) Signal Medium Button (yellow with led) integrated Led pin
+const int pinButtonBig = 4; // Signal Big Button (Green with led) pin
+const int pinButtonBigLed = 5; // (SUPPORT Analogic) Signal Big Button (Green with led) integrated Led pin
+
+// Rotative Interruptors (using 74HC165) pins
+const int pinSH_LD = 8; // SH/LD (Latch) relié à D8
+// Pin 12 => CLK (Clock) relié à D12
+// Pin 13 => QH (Data) relié à D13
+
 const int numChips = 5;       // Nombre de 74HC165 en série
 uint8_t buffer[numChips];     // Tableau pour stocker les octets lus
 
