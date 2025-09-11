@@ -5,6 +5,7 @@ using UnityEngine;
 
 public static class SerialHelper
 {
+    // Try detecting the plugged port by using the "ping-pong" method
     public static async Task<string> DetectArduinoPort(CancellationToken token, int baudRate = 9600, string ping = "ping", string pong = "pong")
     {
         if (string.IsNullOrEmpty(ping) || string.IsNullOrEmpty(pong)) {

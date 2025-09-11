@@ -9,17 +9,17 @@ public class InterruptorsReader : MonoBehaviour
     void Start() => GetComponent<SerialCommunicationController>().OnData.AddListener(OnData);
     void OnDestroy() => GetComponent<SerialCommunicationController>().OnData.RemoveListener(OnData);
 
-    [SerializeField]
+    [SerializeField, Tooltip("Interruptor Data Subkey (after global key)")]
     private string key = "INTR_";
-    [SerializeField]
+    [SerializeField, Tooltip("Interruptor value representations separator string")]
     private string dataSeparator = "|";
 
     [Header("Events")]
-    [SerializeField]
+    [SerializeField, Tooltip("Callback invoked on single change with details (before calling global callback)")]
     private UnityEvent<int, int> onSingleChanged;
     public UnityEvent<int, int> OnSingleChanged => onSingleChanged;
 
-    [SerializeField]
+    [SerializeField, Tooltip("Callback invoked when there are changes (after calling single callbacks)")]
     private UnityEvent<int[]> onChanged;
     public UnityEvent<int[]> OnChanged => onChanged;
 
@@ -30,12 +30,15 @@ public class InterruptorsReader : MonoBehaviour
 
     void OnData(string data)
     {
+        // Check if sub-key match with the interruptor one
         if (!data.StartsWith(key)) return;
         data = data.Substring(key.Length);
 
+        // Split interruptors string values & check count match with wanted one
         string[] values = data.Split(dataSeparator);
         if (values.Length != interruptorCount) return;
 
+        // Loop over values, Parse them to corresponding ids, and Register changes
         changes.Clear();
         for (int i = 0; i < values.Length; ++i) {
             int val = ParseOneHot8To1to6(values[iCount - i]);
@@ -45,6 +48,7 @@ public class InterruptorsReader : MonoBehaviour
             }
         }
 
+        // Invoke Changes callbacks (Singles & Global)
         int[] keys = changes.Keys.ToArray();
         if (keys.Length > 0) {
             foreach (int key in keys)

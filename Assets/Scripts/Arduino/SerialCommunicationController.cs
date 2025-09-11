@@ -45,6 +45,7 @@ public class SerialCommunicationController : MonoBehaviour
             }
         }
 
+        // Access data & if match DataKey invoke callback, otherwise log it from ARDUINO
         lock (dataLock) {
             if (!string.IsNullOrEmpty(data)) {
                 if (data.StartsWith(dataKey))
@@ -57,6 +58,7 @@ public class SerialCommunicationController : MonoBehaviour
 
     void OnApplicationQuit()
     {
+        // Kill serial reading thread and close port
         isRunning = false;
         if (serialThread != null && serialThread.IsAlive)
             serialThread.Join(); // Attendre que le thread se termine
@@ -65,6 +67,7 @@ public class SerialCommunicationController : MonoBehaviour
 
     async void TryConnect()
     {
+        // Try connecting by opening serial port, then start the reading serial Thread
         tryConnect = true;
         await OpenSerialPort();
         if (destroyCancellationToken.IsCancellationRequested) return;
@@ -77,14 +80,17 @@ public class SerialCommunicationController : MonoBehaviour
 
     private async Task OpenSerialPort()
     {
+        // Try automatically getting Arduino port by going over all of them and using "ping-pong" method
         Debug.LogWarning("Looking for Arduino...");
         string portName = await SerialHelper.DetectArduinoPort(destroyCancellationToken, baudRate, ping, pong);
         if (string.IsNullOrEmpty(portName) || destroyCancellationToken.IsCancellationRequested) return;
 
+        // Creating serial port object with its settings
         serialPort = new SerialPort(portName, baudRate) { ReadTimeout = readTimeout };
         serialPort.RtsEnable = true;
         serialPort.DtrEnable = true;
 
+        // Try opening the serial port
         try {
             serialPort.Open();
             Debug.Log("Serial port opened: " + portName);
@@ -96,6 +102,7 @@ public class SerialCommunicationController : MonoBehaviour
 
     private void CloseSerialPort()
     {
+        // Close the serial port
         if (serialPort != null && serialPort.IsOpen) {
             string portName = serialPort.PortName;
             serialPort.Close();
@@ -105,10 +112,11 @@ public class SerialCommunicationController : MonoBehaviour
 
     private void ReadSerialData()
     {
+        // Executed in different thread, loop while should run
         while (isRunning && serialPort.IsOpen) {
             try {
 
-                // Utiliser ReadLine pour lire une ligne complète
+                // Read incoming line & register it to current data
                 string incomingData = serialPort.ReadLine();
                 if (!string.IsNullOrEmpty(incomingData)) {
                     lock (dataLock) {
@@ -116,12 +124,13 @@ public class SerialCommunicationController : MonoBehaviour
                     }
                 }
 
+            // Catch eventual exceptions
             } catch (System.TimeoutException) {
             } catch (System.Exception ex) {
                 Debug.LogError("Error reading from serial port: " + ex.Message +
                     "\nClosing serial port and try re-open it");
 
-                // Nettoyer et forcer reconnexion
+                // Clean & force reconnection
                 try { serialPort.Close(); } catch { }
                 serialPort = null;
                 isRunning = false;
