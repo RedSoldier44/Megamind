@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Scoring : MonoBehaviour
 {
@@ -6,10 +8,9 @@ public class Scoring : MonoBehaviour
     #region Fields
     //-------------------------------------------------
 
-
     [SerializeField] private float score;
 
-    [SerializeField] private float timer;
+    [SerializeField, HideInInspector] private float timer;
 
     [SerializeField] private float animalButtonScore;
 
@@ -23,6 +24,8 @@ public class Scoring : MonoBehaviour
 
     [SerializeField] private float resetButtonScore;
 
+
+    [SerializeField] private TMP_Text m_scoreTxt;
 
     #endregion
 
@@ -38,7 +41,12 @@ public class Scoring : MonoBehaviour
 
     void Update()
     {
-        
+        timer = Time.time;
+
+        int time = (int)timer;
+
+        m_scoreTxt.text = $"{time}";
+
     }
 
     #endregion
