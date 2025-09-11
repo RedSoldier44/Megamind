@@ -32,13 +32,6 @@ public class Scoring : MonoBehaviour
     #region Unity Methods
     //-------------------------------------------------
 
-
-    void Start()
-    {
-        
-    }
-
-
     void Update()
     {
         timer = Time.time;
