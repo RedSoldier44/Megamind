@@ -14,21 +14,22 @@ public class ButtonSound : MonoBehaviour
     [Header("ID")]
     [Range(0, 5)]
     public int SoundID = 0;
+    [SerializeField, Range(0, 4)]
+    private int buttonId = 0;
 
-    #endregion
-
-    #region Unity Methods
-    //---------------------------------------
-
-    void Update()
-    {
-
-    }
+    [HideInInspector]
+    public bool isReady = false;
 
     #endregion
 
     #region Custom Methods
     //---------------------------------------
+
+    public void SetButtonValue(int btnId, int newValue)
+    {
+        if (btnId != buttonId) return;
+        SetSoundID(newValue - 1);
+    }
 
     public void SetSoundID(int newID)
     {
@@ -45,6 +46,7 @@ public class ButtonSound : MonoBehaviour
 
     public void PlayIndex(int index)
     {
+        if (!isReady) return;
         if (index >= 0 && index < audioClips.Length && audioSource != null && audioClips[index] != null)
         {
             audioSource.Stop();
@@ -59,6 +61,7 @@ public class ButtonSound : MonoBehaviour
 
     void PlayCurrentSound()
     {
+        if (!isReady) return;
         if (audioSource != null && audioClips[SoundID] != null)
         {
             audioSource.Stop();

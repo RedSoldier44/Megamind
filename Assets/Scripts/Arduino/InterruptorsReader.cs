@@ -6,8 +6,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(SerialCommunicationController))]
 public class InterruptorsReader : MonoBehaviour
 {
-    void Start() => GetComponent<SerialCommunicationController>().OnData.AddListener(OnData);
-    void OnDestroy() => GetComponent<SerialCommunicationController>().OnData.RemoveListener(OnData);
+    static int[] lastInterruptors = new int[0];
 
     [SerializeField, Tooltip("Interruptor Data Subkey (after global key)")]
     private string key = "INTR_";
@@ -27,6 +26,27 @@ public class InterruptorsReader : MonoBehaviour
     readonly Dictionary<int, int> changes = new Dictionary<int, int>();
     readonly int[] interruptors = new int[interruptorCount];
     public int[] Interruptors => interruptors;
+
+    InterruptorsReader()
+    {
+        if (lastInterruptors.Length > 0) {
+            interruptors = lastInterruptors;
+        }
+    }
+
+    ~InterruptorsReader()
+    {
+        lastInterruptors = interruptors;
+    }
+
+    void OnDestroy() => GetComponent<SerialCommunicationController>().OnData.RemoveListener(OnData);
+    void Start()
+    {
+        GetComponent<SerialCommunicationController>().OnData.AddListener(OnData);
+        for (int i = 0; i < interruptors.Length; ++i) {
+            onSingleChanged.Invoke(i, interruptors[i]);
+        } onChanged.Invoke(Enumerable.Range(0, interruptorCount).ToArray());
+    }
 
     void OnData(string data)
     {

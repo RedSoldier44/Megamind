@@ -30,6 +30,9 @@ public class GameSoundManager : MonoBehaviour
 
     public bool validateCombination = false;
 
+    private bool skipTuto = false;
+
+    private bool hasStart = false;
     private bool starting = false;
     private bool won = false;
     public bool Won => won;
@@ -39,7 +42,7 @@ public class GameSoundManager : MonoBehaviour
     #region Unity Methods
     //---------------------------------------
 
-    void Start()
+    private void PlayGame()
     {
         won = false;
         startGameTimer = 2f + onBoardingClip.length;
@@ -58,7 +61,7 @@ public class GameSoundManager : MonoBehaviour
         if (starting) return;
         if (!won) {
             NewGame();
-        } else {
+        } else if (hasStart) {
             ValidateCombination();
         }
     }
@@ -66,32 +69,41 @@ public class GameSoundManager : MonoBehaviour
     public void NewGame()
     {
         if (starting) return;
+        SetReady(true);
         StopAllCoroutines();
-        Start();
+        PlayGame();
     }
 
     public void ReplayCombination()
     {
+        if (!hasStart) return;
         if (starting) return;
         PlayTargetCombination();
     }
 
     public void ValidateCombination()
     {
+        if (!hasStart) return;
         if (won || starting) return;
         if (CheckPlayerCombination()) {
             audioSource.clip = victoryClip;
             audioSource.Play();
+            SetReady(false);
             won = true;
         } else {
             audioSource.clip = falseClip;
             audioSource.Play();
+            SetReady(false);
             won = false;
         }
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.P)) {
+            skipTuto = true;
+        }
+
         if (starting) return;
         if (newGame) {
              NewGame();
@@ -140,11 +152,31 @@ public class GameSoundManager : MonoBehaviour
         }
     }
 
+    private void SetReady(bool state)
+    {
+        for (int i = 0; i < objects.Length; i++)
+        {
+            objects[i].isReady = state;
+        }
+    }
+
     public IEnumerator StartGame()
     {
         starting = true;
-        yield return new WaitForSeconds(startGameTimer);
+        skipTuto = false;
+        hasStart = false;
+
+        float timer = 0.0f;
+        WaitForSeconds wfs = new WaitForSeconds(0.1f);
+        while (timer < startGameTimer) {
+            yield return wfs;
+            timer += 0.1f;
+            if (skipTuto) timer = startGameTimer;
+        }
+        
         starting = false;
+        skipTuto = false;
+        hasStart = true;
 
         GenerateCombination();
         PlayTargetCombination();
