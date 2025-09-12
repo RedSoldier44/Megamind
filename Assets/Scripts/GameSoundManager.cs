@@ -41,6 +41,37 @@ public class GameSoundManager : MonoBehaviour
 
     #region Unity Methods
     //---------------------------------------
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            skipTuto = true;
+        }
+
+        if (starting) return;
+        if (newGame)
+        {
+            NewGame();
+            newGame = false;
+        }
+
+        if (replayCombination)
+        {
+            ReplayCombination();
+            replayCombination = false;
+        }
+
+        if (validateCombination)
+        {
+            ValidateCombination();
+            validateCombination = false;
+        }
+    }
+
+    #endregion
+
+    #region Custom Methods
+    //---------------------------------------
 
     private void PlayGame()
     {
@@ -59,9 +90,12 @@ public class GameSoundManager : MonoBehaviour
     public void BigButtonPressed()
     {
         if (starting) return;
-        if (!won) {
+        if (!won)
+        {
             NewGame();
-        } else if (hasStart) {
+        }
+        else if (hasStart)
+        {
             ValidateCombination();
         }
     }
@@ -85,46 +119,21 @@ public class GameSoundManager : MonoBehaviour
     {
         if (!hasStart) return;
         if (won || starting) return;
-        if (CheckPlayerCombination()) {
+        if (CheckPlayerCombination())
+        {
             audioSource.clip = victoryClip;
             audioSource.Play();
             SetReady(false);
             won = true;
-        } else {
+        }
+        else
+        {
             audioSource.clip = falseClip;
             audioSource.Play();
             SetReady(false);
             won = false;
         }
     }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P)) {
-            skipTuto = true;
-        }
-
-        if (starting) return;
-        if (newGame) {
-             NewGame();
-             newGame = false;
-        }
-
-        if (replayCombination) {
-            ReplayCombination();
-            replayCombination = false;
-        }
-
-        if (validateCombination) {
-            ValidateCombination();
-            validateCombination = false;
-        }
-    }
-
-    #endregion
-
-    #region Custom Methods
-    //---------------------------------------
 
     void GenerateCombination()
     {
