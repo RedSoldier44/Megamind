@@ -9,6 +9,7 @@ public class GameSoundManager : MonoBehaviour
 
     [Header("Audio Source OnBoarding")]
     public AudioSource onBoarding;
+    public AudioClip clip;
 
     [Header("Actual Combination")]
     public int[] targetCombination = new int[5];
@@ -20,11 +21,10 @@ public class GameSoundManager : MonoBehaviour
     [Header("Begining Timer")]
     public float startGameTimer;
 
+    [Header("Game Input")]
     public bool newGame = false;
 
     public bool replayCombination = false;
-
-    public AudioClip clip;
 
     #endregion
 

@@ -592,6 +592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onBoarding: {fileID: 543648724}
+  clip: {fileID: 8300000, guid: 99fb10f682d6f8b438e9912de0bf4d1b, type: 3}
   targetCombination: 0000000000000000000000000000000000000000
   objects:
   - {fileID: 643380352}
@@ -633,7 +634,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 1b05d5e5ab0b1244f9d23a92eb09fdc7, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 99fb10f682d6f8b438e9912de0bf4d1b, type: 3}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
