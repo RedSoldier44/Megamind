@@ -47,6 +47,7 @@ public class ButtonSound : MonoBehaviour
     {
         if (index >= 0 && index < audioClips.Length && audioSource != null && audioClips[index] != null)
         {
+            audioSource.Stop();
             audioSource.clip = audioClips[index];
             audioSource.Play();
         }
@@ -60,6 +61,7 @@ public class ButtonSound : MonoBehaviour
     {
         if (audioSource != null && audioClips[SoundID] != null)
         {
+            audioSource.Stop();
             audioSource.clip = audioClips[SoundID];
             audioSource.Play();
         }

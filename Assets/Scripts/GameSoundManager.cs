@@ -28,6 +28,12 @@ public class GameSoundManager : MonoBehaviour
 
     public bool replayCombination = false;
 
+    public bool validateCombination = false;
+
+    private bool starting = false;
+    private bool won = false;
+    public bool Won => won;
+
     #endregion
 
     #region Unity Methods
@@ -35,9 +41,11 @@ public class GameSoundManager : MonoBehaviour
 
     void Start()
     {
+        won = false;
         startGameTimer = 2f + onBoardingClip.length;
         //---------------------------------------
 
+        audioSource.Stop();
         audioSource.clip = onBoardingClip;
         audioSource.Play();
         //---------------------------------------
@@ -45,32 +53,59 @@ public class GameSoundManager : MonoBehaviour
         StartCoroutine(StartGame());
     }
 
-    void Update()
+    public void BigButtonPressed()
     {
-        if (newGame == true)
-        {
-            GenerateCombination();
-            newGame = false;
+        if (starting) return;
+        if (!won) {
+            NewGame();
+        } else {
+            ValidateCombination();
         }
-        else return;
+    }
 
+    public void NewGame()
+    {
+        if (starting) return;
+        StopAllCoroutines();
+        Start();
+    }
 
-        if (replayCombination == true)
-        {
-            PlayTargetCombination();
-            replayCombination = false;
-        }
-        else return;
+    public void ReplayCombination()
+    {
+        if (starting) return;
+        PlayTargetCombination();
+    }
 
-        if (CheckPlayerCombination() == true)
-        {
+    public void ValidateCombination()
+    {
+        if (won || starting) return;
+        if (CheckPlayerCombination()) {
             audioSource.clip = victoryClip;
             audioSource.Play();
-        }
-        else 
-        {
+            won = true;
+        } else {
             audioSource.clip = falseClip;
             audioSource.Play();
+            won = false;
+        }
+    }
+
+    void Update()
+    {
+        if (starting) return;
+        if (newGame) {
+             NewGame();
+             newGame = false;
+        }
+
+        if (replayCombination) {
+            ReplayCombination();
+            replayCombination = false;
+        }
+
+        if (validateCombination) {
+            ValidateCombination();
+            validateCombination = false;
         }
     }
 
@@ -83,7 +118,7 @@ public class GameSoundManager : MonoBehaviour
     {
         for (int i = 0; i < targetCombination.Length; i++)
         {
-            targetCombination[i] = Random.Range(0, objects[i].audioClips.Length);
+            targetCombination[i] = UnityEngine.Random.Range(0, objects[i].audioClips.Length);
         }
     }
 
@@ -107,7 +142,9 @@ public class GameSoundManager : MonoBehaviour
 
     public IEnumerator StartGame()
     {
+        starting = true;
         yield return new WaitForSeconds(startGameTimer);
+        starting = false;
 
         GenerateCombination();
         PlayTargetCombination();

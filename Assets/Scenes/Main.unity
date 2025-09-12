@@ -591,10 +591,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ef60bdf2ca03d5449e0a1d5900f8d17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 543648724}
-  onBoardingClip: {fileID: 8300000, guid: 99fb10f682d6f8b438e9912de0bf4d1b, type: 3}
-  victoryClip: {fileID: 8300000, guid: b91ab5eaf31d0384d96b3fef74d1f022, type: 3}
-  falseClip: {fileID: 8300000, guid: 6bee80cb93c0642418f3a5f457e12adf, type: 3}
+  audioSource: {fileID: 0}
+  onBoardingClip: {fileID: 0}
+  victoryClip: {fileID: 0}
+  falseClip: {fileID: 0}
   targetCombination: 0000000000000000000000000000000000000000
   objects:
   - {fileID: 643380352}
@@ -605,6 +605,7 @@ MonoBehaviour:
   startGameTimer: 0
   newGame: 0
   replayCombination: 0
+  validateCombination: 0
 --- !u!4 &543648723
 Transform:
   m_ObjectHideFlags: 0
@@ -1242,6 +1243,239 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1001 &1026140715
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1579893966866198574, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1579893966866198574, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1579893966866198574, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1579893966866198574, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1579893966866198574, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1579893966866198574, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1579893966866198574, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1579893966866198574, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1579893966866198574, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1579893966866198574, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364139216752915592, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364139216752915592, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onReleased.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364139216752915592, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364139216752915592, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onReleased.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364139216752915592, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1100121844}
+    - target: {fileID: 2364139216752915592, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onReleased.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1100121844}
+    - target: {fileID: 2364139216752915592, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364139216752915592, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: InvokePressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364139216752915592, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onReleased.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364139216752915592, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onReleased.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: InvokeReleased
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364139216752915592, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DebounceButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364139216752915592, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onReleased.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DebounceButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364139216752915592, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364139216752915592, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onReleased.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812301214822615470, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: m_Name
+      value: ArduinoManager (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802273448502664522, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802273448502664522, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onReleased.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802273448502664522, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802273448502664522, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onReleased.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802273448502664522, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1352606165}
+    - target: {fileID: 7802273448502664522, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onReleased.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1352606165}
+    - target: {fileID: 7802273448502664522, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802273448502664522, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: InvokePressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802273448502664522, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onReleased.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802273448502664522, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onReleased.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: InvokeReleased
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802273448502664522, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DebounceButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802273448502664522, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onReleased.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DebounceButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802273448502664522, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802273448502664522, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+      propertyPath: onReleased.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f438e3c6b04ed1f49b168b221031b6e9, type: 3}
+--- !u!1 &1100121843
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1100121845}
+  - component: {fileID: 1100121844}
+  m_Layer: 0
+  m_Name: DebounceBig
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1100121844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100121843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4227b6b5b9952d44a3e3e09c7a4341b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pressDelay: 0.15
+  releaseDelay: 0.15
+  onPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 543648722}
+        m_TargetAssemblyTypeName: GameSoundManager, Assembly-CSharp
+        m_MethodName: BigButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onReleased:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &1100121845
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100121843}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1058.372, y: 585.17126, z: -1007.99677}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1213743403
 GameObject:
   m_ObjectHideFlags: 0
@@ -1503,6 +1737,70 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1352606164
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1352606166}
+  - component: {fileID: 1352606165}
+  m_Layer: 0
+  m_Name: DebounceMedium
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1352606165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352606164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4227b6b5b9952d44a3e3e09c7a4341b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pressDelay: 0.15
+  releaseDelay: 0.15
+  onPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 543648722}
+        m_TargetAssemblyTypeName: GameSoundManager, Assembly-CSharp
+        m_MethodName: ReplayCombination
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onReleased:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &1352606166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352606164}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1058.372, y: 585.17126, z: -1007.99677}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1664027991
 GameObject:
   m_ObjectHideFlags: 0
@@ -2677,3 +2975,6 @@ SceneRoots:
   - {fileID: 181819593}
   - {fileID: 1664027993}
   - {fileID: 543648723}
+  - {fileID: 1026140715}
+  - {fileID: 1100121845}
+  - {fileID: 1352606166}
