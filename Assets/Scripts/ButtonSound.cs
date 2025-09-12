@@ -12,23 +12,8 @@ public class ButtonSound : MonoBehaviour
     public AudioClip[] audioClips = new AudioClip[6];
 
     [Header("ID")]
-    [Range(0, 6)]
+    [Range(0, 5)]
     public int SoundID = 0;
-    
-    private int _currentValue = -1; // valeur interne
-
-    public int CurrentValue
-    {
-        get => _currentValue;
-        set
-        {
-            if (_currentValue != value) // seulement si ça change
-            {
-                _currentValue = value;
-                PlaySound(_currentValue);
-            }
-        }
-    }
 
     #endregion
 
@@ -37,7 +22,7 @@ public class ButtonSound : MonoBehaviour
 
     void Update()
     {
-        SoundID = CurrentValue;
+
     }
 
     #endregion
@@ -45,22 +30,38 @@ public class ButtonSound : MonoBehaviour
     #region Custom Methods
     //---------------------------------------
 
-    void PlaySound(int index)
+    public void SetSoundID(int newID)
     {
-        if (audioSource == null)
+        if (newID >= 0 && newID < audioClips.Length)
         {
-            Debug.LogWarning("AudioSource manquant !");
-            return;
+            SoundID = newID;
+            PlayCurrentSound();
         }
+        else
+        {
+            Debug.LogWarning("SoundID invalide pour " + gameObject.name);
+        }
+    }
 
-        if (index >= 0 && index < audioClips.Length && audioClips[index] != null)
+    public void PlayIndex(int index)
+    {
+        if (index >= 0 && index < audioClips.Length && audioSource != null && audioClips[index] != null)
         {
             audioSource.clip = audioClips[index];
             audioSource.Play();
         }
         else
         {
-            Debug.LogWarning($"Pas de son défini pour l'index {index}");
+            Debug.LogWarning("Index invalide ou son manquant pour " + gameObject.name);
+        }
+    }
+
+    void PlayCurrentSound()
+    {
+        if (audioSource != null && audioClips[SoundID] != null)
+        {
+            audioSource.clip = audioClips[SoundID];
+            audioSource.Play();
         }
     }
 
