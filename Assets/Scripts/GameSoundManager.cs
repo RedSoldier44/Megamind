@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GameSoundManager : MonoBehaviour
@@ -6,6 +7,9 @@ public class GameSoundManager : MonoBehaviour
     #region Fields
     //---------------------------------------
 
+    [Header("Audio Source OnBoarding")]
+    public AudioSource onBoarding;
+
     [Header("Actual Combination")]
     public int[] targetCombination = new int[5];
 
@@ -13,9 +17,14 @@ public class GameSoundManager : MonoBehaviour
     [Header("All buttons")]
     public ButtonSound[] objects = new ButtonSound[5];
 
+    [Header("Begining Timer")]
+    public float startGameTimer;
+
     public bool newGame = false;
 
     public bool replayCombination = false;
+
+    public AudioClip clip;
 
     #endregion
 
@@ -24,10 +33,14 @@ public class GameSoundManager : MonoBehaviour
 
     void Start()
     {
-        GenerateCombination();
+        startGameTimer = 2f + clip.length;
         //---------------------------------------
 
-        PlayTargetCombination();
+        onBoarding.clip = clip;
+        onBoarding.Play();
+        //---------------------------------------
+
+        StartCoroutine(StartGame());
     }
 
     void Update()
@@ -77,6 +90,14 @@ public class GameSoundManager : MonoBehaviour
         {
             objects[i].PlayIndex(targetCombination[i]);
         }
+    }
+
+    public IEnumerator StartGame()
+    {
+        yield return new WaitForSeconds(startGameTimer);
+
+        GenerateCombination();
+        PlayTargetCombination();
     }
 
     #endregion
