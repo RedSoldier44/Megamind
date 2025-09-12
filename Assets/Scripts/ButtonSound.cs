@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent (typeof(GameSoundManager))]
 public class ButtonSound : MonoBehaviour
 {
 
