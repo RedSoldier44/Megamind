@@ -591,8 +591,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ef60bdf2ca03d5449e0a1d5900f8d17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onBoarding: {fileID: 543648724}
-  clip: {fileID: 8300000, guid: 99fb10f682d6f8b438e9912de0bf4d1b, type: 3}
+  audioSource: {fileID: 543648724}
+  onBoardingClip: {fileID: 8300000, guid: 99fb10f682d6f8b438e9912de0bf4d1b, type: 3}
+  victoryClip: {fileID: 8300000, guid: b91ab5eaf31d0384d96b3fef74d1f022, type: 3}
+  falseClip: {fileID: 8300000, guid: 6bee80cb93c0642418f3a5f457e12adf, type: 3}
   targetCombination: 0000000000000000000000000000000000000000
   objects:
   - {fileID: 643380352}
@@ -600,7 +602,7 @@ MonoBehaviour:
   - {fileID: 1937407560}
   - {fileID: 2122892275}
   - {fileID: 1739331539}
-  startGameTimer: 107
+  startGameTimer: 0
   newGame: 0
   replayCombination: 0
 --- !u!4 &543648723

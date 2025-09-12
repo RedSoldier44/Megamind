@@ -7,9 +7,11 @@ public class GameSoundManager : MonoBehaviour
     #region Fields
     //---------------------------------------
 
-    [Header("Audio Source OnBoarding")]
-    public AudioSource onBoarding;
-    public AudioClip clip;
+    [Header("Clips")]
+    public AudioSource audioSource;
+    public AudioClip onBoardingClip;
+    public AudioClip victoryClip;
+    public AudioClip falseClip;
 
     [Header("Actual Combination")]
     public int[] targetCombination = new int[5];
@@ -33,11 +35,11 @@ public class GameSoundManager : MonoBehaviour
 
     void Start()
     {
-        startGameTimer = 2f + clip.length;
+        startGameTimer = 2f + onBoardingClip.length;
         //---------------------------------------
 
-        onBoarding.clip = clip;
-        onBoarding.Play();
+        audioSource.clip = onBoardingClip;
+        audioSource.Play();
         //---------------------------------------
 
         StartCoroutine(StartGame());
@@ -59,6 +61,17 @@ public class GameSoundManager : MonoBehaviour
             replayCombination = false;
         }
         else return;
+
+        if (CheckPlayerCombination() == true)
+        {
+            audioSource.clip = victoryClip;
+            audioSource.Play();
+        }
+        else 
+        {
+            audioSource.clip = falseClip;
+            audioSource.Play();
+        }
     }
 
     #endregion
