@@ -130,7 +130,7 @@ public class GameSoundManager : MonoBehaviour
     {
         for (int i = 0; i < targetCombination.Length; i++)
         {
-            targetCombination[i] = UnityEngine.Random.Range(0, objects[i].audioClips.Length);
+            targetCombination[i] = UnityEngine.Random.Range(1, objects[i].audioClips.Length);
         }
     }
 
@@ -173,7 +173,8 @@ public class GameSoundManager : MonoBehaviour
             timer += 0.1f;
             if (skipTuto) timer = startGameTimer;
         }
-        
+
+        audioSource.Stop();
         starting = false;
         skipTuto = false;
         hasStart = true;

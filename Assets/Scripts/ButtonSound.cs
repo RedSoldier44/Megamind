@@ -10,6 +10,7 @@ public class ButtonSound : MonoBehaviour
 
     [Header("Button clips")]
     public AudioClip[] audioClips = new AudioClip[6];
+    public AudioClip[] shortClips = new AudioClip[6];
 
     [Header("ID")]
     [Range(0, 5)]
@@ -40,32 +41,32 @@ public class ButtonSound : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("SoundID invalide pour " + gameObject.name);
+            //Debug.LogWarning("SoundID invalide pour " + gameObject.name);
         }
     }
 
     public void PlayIndex(int index)
     {
         if (!isReady) return;
+        if (audioSource != null) audioSource.Stop();
         if (index >= 0 && index < audioClips.Length && audioSource != null && audioClips[index] != null)
         {
-            audioSource.Stop();
             audioSource.clip = audioClips[index];
             audioSource.Play();
         }
         else
         {
-            Debug.LogWarning("Index invalide ou son manquant pour " + gameObject.name);
+            //Debug.LogWarning("Index invalide ou son manquant pour " + gameObject.name);
         }
     }
 
     void PlayCurrentSound()
     {
         if (!isReady) return;
-        if (audioSource != null && audioClips[SoundID] != null)
+        if (audioSource != null) audioSource.Stop();
+        if (audioSource != null && shortClips[SoundID] != null)
         {
-            audioSource.Stop();
-            audioSource.clip = audioClips[SoundID];
+            audioSource.clip = shortClips[SoundID];
             audioSource.Play();
         }
     }
